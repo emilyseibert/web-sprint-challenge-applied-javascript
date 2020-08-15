@@ -66,6 +66,7 @@ const generateCards = () => {
     });
 };
 
+// STRETCH FOR FILTER:
 export const filterCards = () => {
   // hide all cards except for the ones that have the filter
   const activeFilters = Array.from(
