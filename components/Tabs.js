@@ -9,3 +9,31 @@
 //    <div class="tab">topic here</div>
 //
 // NOTE: you do _not_ need to install axios as it's included in the HTML via script element
+
+// Import for stretch filter
+import { filterCards } from "./Cards";
+
+const Tabs = () => {
+  axios
+    .get("https://lambda-times-api.herokuapp.com/topics")
+    .then((response) => {
+      // console.log("response", response.data.topics);
+      const parentDOMElement = document.querySelector(".topics");
+
+      response.data.topics.map((topic) => {
+        const tab = document.createElement("div");
+        tab.classList.add("tab");
+        tab.textContent = topic;
+
+        // Stretch for Filter
+        tab.addEventListener("click", () => {
+          tab.classList.toggle("active-tab");
+          filterCards();
+        });
+
+        parentDOMElement.appendChild(tab);
+      });
+    });
+};
+
+Tabs();
